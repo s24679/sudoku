@@ -5,9 +5,13 @@ import json
 from UI.modules.aspectRatioContainer import AspectRatioContainer
 from UI.views.board import Board
 import time
+import os
 
-SERVER_HOST = 'localhost'
-SERVER_PORT = 12345
+CONFIG_PATH = os.path.join(os.path.dirname(__file__), "config.json")
+with open(CONFIG_PATH, "r") as f:
+    config = json.load(f)
+SERVER_HOST = config.get("server_host", "localhost")
+SERVER_PORT = config.get("server_port", 12345)
 
 class ClientApp:
     def __init__(self, root):
